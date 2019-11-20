@@ -23,12 +23,15 @@ public:
 public slots:
     void update();
 
+private slots:
+    void widgetDestroyed();
+
 private:
     QWidget* parentWidgetRef_;
     QTimer* timer_;
     int interval_;
     int step_;
-    float angle_;
+    qreal angle_;
 
 };
 

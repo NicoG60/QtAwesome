@@ -826,7 +826,7 @@ Q_OBJECT
 
 public:
 
-    explicit QtAwesome(QObject *parent = 0);
+    explicit QtAwesome(QObject *parent = nullptr);
     virtual ~QtAwesome();
 
     void init( const QString& fontname );
@@ -867,7 +867,7 @@ private:
 class QtAwesomeIconPainter
 {
 public:
-    virtual ~QtAwesomeIconPainter() {}
+    virtual ~QtAwesomeIconPainter();
     virtual void paint( QtAwesome* awesome, QPainter* painter, const QRect& rect, QIcon::Mode mode, QIcon::State state, const QVariantMap& options ) = 0;
 };
 

@@ -14,7 +14,7 @@
 #include <QFile>
 #include <QFontDatabase>
 
-
+QtAwesomeIconPainter::~QtAwesomeIconPainter() {}
 
 /// The font-awesome icon painter
 class QtAwesomeCharIconPainter: public QtAwesomeIconPainter
@@ -94,7 +94,7 @@ public:
         painter->setPen(color);
 
         // add some 'padding' around the icon
-        int drawSize = qRound(rect.height()*options.value("scale-factor").toFloat());
+        int drawSize = qRound(rect.height()*options.value("scale-factor").toDouble());
 
         painter->setFont( awesome->font(drawSize) );
         painter->drawText( rect, text, QTextOption( Qt::AlignCenter|Qt::AlignVCenter ) );
@@ -129,19 +129,21 @@ public:
 
     virtual void paint(QPainter* painter, const QRect& rect, QIcon::Mode mode, QIcon::State state)
     {
-        Q_UNUSED( mode );
-        Q_UNUSED( state );
+        Q_UNUSED( mode )
+        Q_UNUSED( state )
         iconPainterRef_->paint( awesomeRef_, painter, rect, mode, state, options_ );
     }
 
     virtual QPixmap pixmap(const QSize& size, QIcon::Mode mode, QIcon::State state)
     {
         QPixmap pm(size);
+
         pm.fill( Qt::transparent ); // we need transparency
         {
             QPainter p(&pm);
             paint(&p, QRect(QPoint(0,0),size), mode, state);
         }
+
         return pm;
     }
 
@@ -1133,14 +1135,16 @@ void QtAwesome::give(const QString& name, QtAwesomeIconPainter* painter)
     painterMap_.insert( name, painter );
 }
 
-/// Creates/Gets the icon font with a given size in pixels. This can be usefull to use a label for displaying icons
+/// Creates/Gets the icon font with a given size in points. This can be usefull to use a label for displaying icons
 /// Example:
 ///
 ///    QLabel* label = new QLabel( QChar( icon_group ) );
 ///    label->setFont( awesome->font(16) )
-QFont QtAwesome::font( int size )
+QFont QtAwesome::font(int size)
 {
     QFont font( fontName_);
+
     font.setPixelSize(size);
+
     return font;
 }
