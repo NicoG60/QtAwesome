@@ -137,13 +137,11 @@ public:
     virtual QPixmap pixmap(const QSize& size, QIcon::Mode mode, QIcon::State state)
     {
         QPixmap pm(size);
-
         pm.fill( Qt::transparent ); // we need transparency
         {
             QPainter p(&pm);
             paint(&p, QRect(QPoint(0,0),size), mode, state);
         }
-
         return pm;
     }
 
@@ -1135,16 +1133,14 @@ void QtAwesome::give(const QString& name, QtAwesomeIconPainter* painter)
     painterMap_.insert( name, painter );
 }
 
-/// Creates/Gets the icon font with a given size in points. This can be usefull to use a label for displaying icons
+/// Creates/Gets the icon font with a given size in pixels. This can be usefull to use a label for displaying icons
 /// Example:
 ///
 ///    QLabel* label = new QLabel( QChar( icon_group ) );
 ///    label->setFont( awesome->font(16) )
-QFont QtAwesome::font(int size)
+QFont QtAwesome::font( int size )
 {
     QFont font( fontName_);
-
     font.setPixelSize(size);
-
     return font;
 }
