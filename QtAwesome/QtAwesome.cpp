@@ -94,7 +94,16 @@ public:
         painter->setPen(color);
 
         // add some 'padding' around the icon
-        int drawSize = qRound(rect.height()*options.value("scale-factor").toDouble());
+        qreal scale = options.value("scale-factor").toDouble();
+        int drawSize = qRound(rect.height()*scale);
+
+        auto font = awesome->font(drawSize);
+        auto fm = QFontMetrics(font, painter->device());
+
+        QRectF br = fm.boundingRect(text);
+
+        if(!rect.contains(br.toRect()) && br.width() >= br.height())
+            drawSize = qRound((rect.width()*br.height()/br.width())*scale);
 
         painter->setFont( awesome->font(drawSize) );
         painter->drawText( rect, text, QTextOption( Qt::AlignCenter|Qt::AlignVCenter ) );
