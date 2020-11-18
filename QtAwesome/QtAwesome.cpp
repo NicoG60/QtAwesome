@@ -1013,7 +1013,7 @@ bool QtAwesome::initFontAwesome( )
         Q_INIT_RESOURCE(QtAwesome);
 
         // load the font file
-        QFile res(":/fonts/fontawesome-4.7.0.ttf");
+        QFile res(":/fonts/fa-solid-900.ttf");
         if(!res.open(QIODevice::ReadOnly)) {
             qDebug() << "Font awesome font could not be loaded!";
             return false;
