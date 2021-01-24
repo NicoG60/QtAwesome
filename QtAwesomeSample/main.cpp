@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         QPushButton* beerButton = new QPushButton( "Cheers!");
 
         QVariantMap options;
-        options.insert("anim", qVariantFromValue( new QtAwesomeAnimation(beerButton) ) );
+        options.insert("anim", QVariant::fromValue( new QtAwesomeAnimation(beerButton) ) );
         beerButton->setIcon( awesome->icon( fa::beer, options  ) );
 
         layout->addWidget(beerButton);
