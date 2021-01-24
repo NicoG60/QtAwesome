@@ -19,7 +19,7 @@ target_include_directories(
     QtAwesome
     PUBLIC
         $<BUILD_INTERFACE:${header_path}>
-        $<INSTALL_INTERFACE:${lib_dest}>
+        $<INSTALL_INTERFACE:${include_dest}>
 
     PRIVATE
         ${Qt5Core_PRIVATE_INCLUDE_DIRS}

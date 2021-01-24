@@ -25,14 +25,12 @@ endif()
 option(QTAWESOME_BUILD_SAMPLE "Build sample" OFF)
 
 #install var
-set(include_dest "include/QtAwesome-${QMidi_VERSION}")
+set(include_dest "include/QtAwesome-${QtAwesome_VERSION}")
 set(lib_dest "lib/QtAwesome-${QtAwesome_VERSION}")
 
 # add subdirs
 add_subdirectory(QtAwesome)
-if(${QTAWESOME_BUILD_SAMPLE})
-    add_subdirectory(QtAwesomeSample)
-endif()
+add_subdirectory(QtAwesomeSample)
 
 # install
 install(FILES QtAwesome-config.cmake DESTINATION ${lib_dest})
