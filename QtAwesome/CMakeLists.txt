@@ -10,7 +10,7 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Gui REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-qt_add_resources(src QtAwesome.qrc)
+qt5_add_resources(src QtAwesome.qrc)
 
 # define library target
 add_library(QtAwesome STATIC ${headers} ${src})
